@@ -1,0 +1,13 @@
+version: "3.5"
+
+services:
+  clamav-server:
+    image: mkodockx/docker-clamav
+  clamav-rest:
+    image: lokori/clamav-rest
+    links:
+      - clamav-server
+    environment:
+      CLAMD_HOST: clamav-server
+    ports:
+      - "8080:8080"
