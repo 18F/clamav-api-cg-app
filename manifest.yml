@@ -1,0 +1,13 @@
+---
+applications:
+- name: clamav-server
+  instances: 1
+  memory: 2G
+  docker:
+    image: mkodockx/docker-clamav:alpine
+  health-check-type: process
+- name: clamav-rest
+  instances: 1
+  memory: 512M 
+  docker:
+    image: lokori/clamav-rest

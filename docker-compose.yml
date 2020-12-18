@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   clamav-server:
-    image: mkodockx/docker-clamav
+    image: mkodockx/docker-clamav:alpine
   clamav-rest:
     image: lokori/clamav-rest
     links:
