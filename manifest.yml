@@ -7,11 +7,13 @@ applications:
     image: mkodockx/docker-clamav:alpine
   health-check-type: process
   routes:
-  - route: clamd.apps.internal
+  - route: ((clamd_hostname)).apps.internal
 - name: clamav-rest
   instances: 1
   memory: 512M
   docker:
     image: lokori/clamav-rest
   env:
-    CLAMD_HOST: clamd.apps.internal
+    CLAMD_HOST: ((clamd_hostname)).apps.internal
+  routes:
+  - route: ((api_route))
