@@ -1,5 +1,17 @@
 # ClamAV API CG App
 
+## Setup
+
+### Create apps
+
+`cf push`
+
+### Configure networking
+
+A network policy is required to route the TCP traffic from the rest app to the clamd server
+
+`cf add-network-policy clamav-rest --destination-app clamav-server --protocol tcp --port 3310`
+
 ## Why this project
 
 This project aims to create a deployable cloud.gov app that will expose a REST api for scanning files for malware with ClamAV.
