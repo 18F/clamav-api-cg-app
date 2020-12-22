@@ -1,0 +1,5 @@
+# Copy this file to vars.yml and then edit in your own values here
+
+# This is the base name to use for the file scanning component apps. It also becomes the basis for
+# the apps.internal routes in use.
+project: my-file-scanner

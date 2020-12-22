@@ -13,17 +13,19 @@ This manifest runs docker images from the following two projects:
 
 ## Setup
 
-This project depends on a couple of deployment variables:
+This project depends on one deployment variable, which is documented in `vars.yml-template`
 
-* `clamd-hostname` The hostname for the clamd server. It will be prepended to the `apps.internal` domain.
-* `api-route` The fully qualified route to access the clamav REST api.
-  This should end in `.apps.internal` if the API will be used internally
+`cp vars.yml-template vars.yml`
 
 ### Create apps
 
-To push both apps to cloud.gov (subtituting your own values for `CLAMD_HOSTNAME` and `API_ROUTE`):
+To push both apps to cloud.gov:
 
-`cf push --var clamd_hostname="CLAMD_HOSTNAME" --var api_route="API_ROUTE"`
+`cf push --vars-file vars.yml`
+
+or to specify the project yourself:
+
+`cf push --var project="PROJECT_NAME"`
 
 ### Configure networking
 
@@ -31,10 +33,6 @@ A [network policy](https://docs.cloudfoundry.org/devguide/deploy-apps/cf-network
 is required to route the TCP traffic from the rest app to the clamd server
 
 `cf add-network-policy SOURCE_APP --destination-app DESTINATION_APP --protocol tcp --port 3310`
-
-For the default values in manifest.yml:
-
-`cf add-network-policy clamav-rest --destination-app clamav-server --protocol tcp --port 3310`
 
 ## Contributing
 

@@ -1,2 +1,5 @@
+# specific deploy variables
+vars.yml
+
 .DS_Store
 /todo.txt

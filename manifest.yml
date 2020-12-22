@@ -1,19 +1,19 @@
 ---
 applications:
-- name: clamav-server
+- name: clamav-server-((project))
   instances: 1
   memory: 2G
   docker:
     image: mkodockx/docker-clamav:alpine
   health-check-type: process
   routes:
-  - route: ((clamd_hostname)).apps.internal
-- name: clamav-rest
+  - route: clamd-((project)).apps.internal
+- name: clamav-rest-((project))
   instances: 1
   memory: 512M
   docker:
     image: lokori/clamav-rest
   env:
-    CLAMD_HOST: ((clamd_hostname)).apps.internal
+    CLAMD_HOST: clamd-((project)).apps.internal
   routes:
-  - route: ((api_route))
+  - route: clamapi-((project)).apps.internal
