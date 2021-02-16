@@ -4,12 +4,9 @@
 
 This project aims to create a deployable cloud.gov app that will expose a REST api for scanning files for malware with ClamAV.
 
-It is inspired by, and borrows heavily from, https://blog.theodo.com/2017/11/implement-antivirus-api-10-min/
+It is inspired by, and borrowed heavily from, https://blog.theodo.com/2017/11/implement-antivirus-api-10-min/
 
-This manifest runs docker images from the following two projects:
-
-* [API interface](https://github.com/solita/clamav-rest)
-* [ClamAV server](https://github.com/mko-x/docker-clamav)
+This manifest now runs a docker image from https://github.com/ajilaag/clamav-rest
 
 ## Setup
 
@@ -17,9 +14,9 @@ This project depends on one deployment variable, which is documented in `vars.ym
 
 `cp vars.yml-template vars.yml`
 
-### Create apps
+### Create app
 
-To push both apps to cloud.gov:
+To push the app to cloud.gov:
 
 `cf push --vars-file vars.yml`
 
@@ -30,9 +27,9 @@ or to specify the project yourself:
 ### Configure networking
 
 A [network policy](https://docs.cloudfoundry.org/devguide/deploy-apps/cf-networking.html#create-policies)
-is required to route the TCP traffic from the rest app to the clamd server
+is required to route the TCP traffic from your app to the API endpoint on the apps.internal domain
 
-`cf add-network-policy SOURCE_APP --destination-app DESTINATION_APP --protocol tcp --port 3310`
+`cf add-network-policy SOURCE_APP --destination-app DESTINATION_APP --protocol tcp --port 9443`
 
 ## Contributing
 
