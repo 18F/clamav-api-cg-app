@@ -1,5 +1,10 @@
 # ClamAV API CG App
 
+## Update:
+
+This repository is no longer actively maintained. A recommended way to deploy the ClamAV app and setup network policies for it is to use terraform with https://github.com/18f/terraform-cloudgov#clamav
+
+
 ## Why this project
 
 This project aims to create a deployable cloud.gov app that will expose a REST api for scanning files for malware with ClamAV.
